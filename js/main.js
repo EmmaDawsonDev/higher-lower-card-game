@@ -6,6 +6,7 @@ const pointsFinal = document.querySelector(".points-final")
 const message = document.querySelector(".message")
 const winSound = new sound("../sounds/win.mp3");
 const loseSound = new sound("../sounds/loselife.mp3")
+const gameOverSound = new sound("../sounds/gameover.mp3")
 
 let deck = createCardDeck();
 let pointsCount = 0;
@@ -59,7 +60,7 @@ function updatePoints() {
   const points = document.querySelector(".score");
   pointsCount++
   points.innerHTML = `<strong>${pointsCount}</strong>`
-  winSound.play();
+  
   if (pointsCount === 52) {
     gameOverModal.classList.add("visible");
     message.innerText = "You Win!"
@@ -70,11 +71,12 @@ function updatePoints() {
 function updateTries() {
   const tries = document.querySelector(".tries");
   triesCount--;
-  loseSound.play();
+  
   tries.innerHTML = `<strong>${triesCount}</strong>`
   if (triesCount === 0) {
     gameOverModal.classList.add("visible");
     pointsFinal.innerText = `Points: ${pointsCount}`
+    gameOverSound.play();
   }
 }
 
@@ -160,8 +162,10 @@ btnLower.addEventListener("click", function() {
   prevValue = currentVal;
   if (comparison === "lower") {
     updatePoints()
+    winSound.play()
   } else {
     updateTries();
+    loseSound.play()
   }
    
 })
@@ -171,8 +175,10 @@ btnSame.addEventListener("click", function() {
   prevValue = currentVal;
   if (comparison === "equal") {
     updatePoints()
+    winSound.play()
   } else {
     updateTries();
+    loseSound.play()
   }
   
 })
@@ -182,8 +188,10 @@ btnHigher.addEventListener("click", function() {
   prevValue = currentVal;
   if (comparison === "higher") {
     updatePoints()
+    winSound.play()
   } else {
     updateTries();
+    loseSound.play()
   }
   
 })
