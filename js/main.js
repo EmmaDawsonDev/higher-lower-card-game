@@ -4,10 +4,10 @@ const btnHigher = document.querySelector(".btn-higher")
 const gameOverModal = document.querySelector(".game-over")
 const pointsFinal = document.querySelector(".points-final")
 const message = document.querySelector(".message")
-const winSound = new sound("../sounds/win.mp3");
-const loseSound = new sound("../sounds/loselife.mp3")
-const gameOverSound = new sound("../sounds/gameover.mp3")
-const gameWinSound = new sound("../sounds/gamewin.mp3")
+const winSound = new sound("./sounds/win.mp3");
+const loseSound = new sound("./sounds/loselife.mp3")
+const gameOverSound = new sound("./sounds/gameover.mp3")
+const gameWinSound = new sound("./sounds/gamewin.mp3")
 
 let deck = createCardDeck();
 let pointsCount = 0;
