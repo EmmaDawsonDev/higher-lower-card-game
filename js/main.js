@@ -74,9 +74,10 @@ function updateTries() {
   
   tries.innerHTML = `<strong>${triesCount}</strong>`
   if (triesCount === 0) {
+    gameOverSound.play()
     gameOverModal.classList.add("visible");
     pointsFinal.innerText = `Points: ${pointsCount}`
-    gameOverSound.play();
+    
   }
 }
 
