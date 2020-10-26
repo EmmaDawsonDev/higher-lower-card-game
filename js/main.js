@@ -94,7 +94,6 @@ function initializeGame(deck) {
   let randomCard = pickRandomCard(deck);
   let prevValue = randomCard[0];
   showCard(randomCard);
-  console.log(randomCard);
   return prevValue;
 }
 
@@ -120,13 +119,10 @@ function compareCards(prev, current) {
     current = 13;
   }
   if (prev > current) {
-    console.log(prev, current);
     return "lower"
   } else if (prev < current) {
-    console.log(prev, current);
     return "higher"
   } else {
-    console.log(prev, current);
     return "equal"
   }
 }
@@ -135,7 +131,6 @@ function compareCards(prev, current) {
 function showCardOnButtonClick() {
   updateHowManyCards()
   let randomCard = pickRandomCard(deck);
-  console.log(randomCard);
   showCard(randomCard);
   let currentValue = randomCard[0]
   return currentValue;
