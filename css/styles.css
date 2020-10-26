@@ -44,12 +44,14 @@ body {
 
 .flex-row {
   display: flex;
+  
 }
 
 .btn {
   padding: .5em 1em;
   border: 2px solid black;
   cursor: pointer;
+  text-align: center;
 }
 
 .btn-same {
@@ -69,4 +71,66 @@ p {
 .img-lrg {
   width: 70px;
   height: 70px;
+}
+
+.game-over {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.modal-flex {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.game-over h1 {
+  font-weight: 900;
+  font-size: 80px;
+  color: red;
+}
+
+.points-final {
+  font-size: 60px;
+  margin-top: .5em;
+  
+}
+
+.border {
+  background-color: white;
+  text-align: center;
+  padding: 2.5em;
+  border-radius: 20px;
+}
+
+.visible {
+  display: block;
+}
+
+@media (max-width: 400px) {
+  .flex-row {
+    display: block;
+  }
+  
+  .btn {
+    padding: 1em 1em;
+    border: 2px solid black;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+
+  
+  
+  .btn-same {
+    border-left-width: 2px;
+    border-right-width: 2px;
+  }
 }

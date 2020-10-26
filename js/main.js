@@ -1,6 +1,12 @@
 const btnLower = document.querySelector(".btn-lower")
 const btnSame = document.querySelector(".btn-same")
 const btnHigher = document.querySelector(".btn-higher")
+const gameOverModal = document.querySelector(".game-over")
+const pointsFinal = document.querySelector(".points-final")
+const message = document.querySelector(".message")
+const winSound = new sound("../sounds/win.mp3");
+const loseSound = new sound("../sounds/loselife.mp3")
+
 let deck = createCardDeck();
 let pointsCount = 0;
 let triesCount = 3;
@@ -53,12 +59,23 @@ function updatePoints() {
   const points = document.querySelector(".score");
   pointsCount++
   points.innerHTML = `<strong>${pointsCount}</strong>`
+  winSound.play();
+  if (pointsCount === 52) {
+    gameOverModal.classList.add("visible");
+    message.innerText = "You Win!"
+    pointsFinal.innerText = `Points: ${pointsCount}`
+  }
 }
 
 function updateTries() {
   const tries = document.querySelector(".tries");
   triesCount--;
+  loseSound.play();
   tries.innerHTML = `<strong>${triesCount}</strong>`
+  if (triesCount === 0) {
+    gameOverModal.classList.add("visible");
+    pointsFinal.innerText = `Points: ${pointsCount}`
+  }
 }
 
 function updateHowManyCards() {
@@ -118,6 +135,21 @@ function showCardOnButtonClick() {
   let currentValue = randomCard[0]
   return currentValue;
   }
+
+  function sound(src) {
+    this.sound = document.createElement("audio");
+    this.sound.src = src;
+    this.sound.setAttribute("preload", "auto");
+    this.sound.setAttribute("controls", "none");
+    this.sound.style.display = "none";
+    document.body.appendChild(this.sound);
+    this.play = function(){
+      this.sound.play();
+    }
+    this.stop = function(){
+      this.sound.pause();
+    }
+  }
     
 
 
@@ -154,4 +186,16 @@ btnHigher.addEventListener("click", function() {
     updateTries();
   }
   
+})
+
+gameOverModal.addEventListener("click", () => {
+  gameOverModal.classList.remove("visible");
+    deck = createCardDeck();
+    pointsCount = -1;
+    triesCount = 4;
+    cardsLeft = 53;
+    updateTries();
+    updatePoints();
+    updateHowManyCards();
+    prevValue = initializeGame(deck);
 })
