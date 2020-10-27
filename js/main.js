@@ -1,3 +1,5 @@
+function startGame() {
+
 const btnLower = document.querySelector(".btn-lower")
 const btnSame = document.querySelector(".btn-same")
 const btnHigher = document.querySelector(".btn-higher")
@@ -73,6 +75,9 @@ function updatePoints() {
 function updateTries() {
   const tries = document.querySelector(".tries");
   triesCount--;
+  if (triesCount < 3 && triesCount > 0) {
+    loseSound.play()
+  }
   
   tries.innerHTML = `<strong>${triesCount}</strong>`
   if (triesCount === 0) {
@@ -163,7 +168,6 @@ btnLower.addEventListener("click", function() {
     winSound.play()
   } else {
     updateTries();
-    loseSound.play()
   }
    
 })
@@ -176,7 +180,6 @@ btnSame.addEventListener("click", function() {
     winSound.play()
   } else {
     updateTries();
-    loseSound.play()
   }
   
 })
@@ -189,7 +192,6 @@ btnHigher.addEventListener("click", function() {
     winSound.play()
   } else {
     updateTries();
-    loseSound.play()
   }
   
 })
@@ -205,3 +207,5 @@ gameOverModal.addEventListener("click", () => {
     updateHowManyCards();
     prevValue = initializeGame(deck);
 })
+
+}
